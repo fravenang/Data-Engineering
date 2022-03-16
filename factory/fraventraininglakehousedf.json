@@ -1,0 +1,9 @@
+{
+	"name": "fraventraininglakehousedf",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "3a1e5e0f-8ff3-4538-b748-ba492ed79d22",
+		"tenantId": "ffeaa65e-7bb4-40e9-acf6-d6b041a1fe36"
+	}
+}
