@@ -23,6 +23,50 @@
 						"resource": "https://vault.azure.net"
 					}
 				}
+			},
+			{
+				"name": "Run Curation Notebook",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Get Secret",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/fravenang38@hotmail.com/electroniz_curation_notebook",
+					"baseParameters": {
+						"STORAGE_ACCOUNT": "@pipeline().parameters.STORAGE_ACCOUNT",
+						"BRONZE_LAYER_NAMESPACE": "@pipeline().parameters.BRONZE_LAYER_NAMESPACE",
+						"SILVER_LAYER_NAMESPACE": "@pipeline().parameters.SILVER_LAYER_NAMESPACE",
+						"STORE_SALES_FOLDER": "@pipeline().parameters.STORE_SALES_FOLDER",
+						"ADLS_FOLDER": "@pipeline().parameters.ADLS_FOLDER",
+						"TABLE_LIST": "@pipeline().parameters.TABLE_LIST",
+						"CURRENCY_LIST": "@pipeline().parameters.CURRENCY_LIST",
+						"CURRENCY_FOLDER": "@pipeline().parameters.CURRENCY_FOLDER",
+						"GEOLOCATION_FOLDER": {
+							"value": "@pipeline().parameters.GEOLOCATION_FOLDER",
+							"type": "Expression"
+						},
+						"LOGS_FOLDER": "@pipeline().parameters.LOGS_FOLDER",
+						"ECOMM_FOLDER": "@pipeline().parameters.ECOMM_FOLDER",
+						"ADLS_KEY": "@activity('Get Secret').output.value"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "Curation Spark Cluster",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"parameters": {
