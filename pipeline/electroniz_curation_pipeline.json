@@ -17,7 +17,11 @@
 				"userProperties": [],
 				"typeProperties": {
 					"url": "https://fraventrainingkv100.vault.azure.net/secrets/ADLSKEY/0c7095816fa64563a69ff34ce26a22fd?api-version=7.0",
-					"method": "GET"
+					"method": "GET",
+					"authentication": {
+						"type": "MSI",
+						"resource": "https://vault.azure.net"
+					}
 				}
 			}
 		],
