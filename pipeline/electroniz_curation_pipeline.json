@@ -1,0 +1,61 @@
+{
+	"name": "electroniz_curation_pipeline",
+	"properties": {
+		"description": "This pipeline will curate data for the sales\ndatabase, currency conversion, geo-location, and\ne-commerce website tracking logs by fetching from the\nbronze layer and saving it in the silver layer",
+		"activities": [
+			{
+				"name": "Get Secret",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://fraventrainingkv100.vault.azure.net/secrets/ADLSKEY/0c7095816fa64563a69ff34ce26a22fd?api-version=7.0",
+					"method": "GET"
+				}
+			}
+		],
+		"parameters": {
+			"SOTRAGE_ACCOUNT": {
+				"type": "string"
+			},
+			"BRONZE_LAYER_NAMESPACE": {
+				"type": "string"
+			},
+			"SILVER_LAYER_NAMESPACE": {
+				"type": "string"
+			},
+			"STORE_SALES_FOLDER": {
+				"type": "string"
+			},
+			"ADLS_FOLDER": {
+				"type": "string"
+			},
+			"TABLE_LIST": {
+				"type": "string"
+			},
+			"CURRENCY_LIST": {
+				"type": "string"
+			},
+			"CURRENCY_FOLDER": {
+				"type": "string"
+			},
+			"GEOLOCATION_FOLDER": {
+				"type": "string"
+			},
+			"LOGS_FOLDER": {
+				"type": "string"
+			},
+			"ECOMM_FOLDER": {
+				"type": "string"
+			}
+		},
+		"annotations": []
+	}
+}
